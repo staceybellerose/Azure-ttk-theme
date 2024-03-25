@@ -35,6 +35,7 @@ proc set_theme {mode} {
         tk_setPalette background [ttk::style lookup . -background] \
             foreground [ttk::style lookup . -foreground] \
             highlightColor [ttk::style lookup . -focuscolor] \
+            inactiveSelectBackground [ttk::style lookup . -selectbackground] \
             selectBackground [ttk::style lookup . -selectbackground] \
             selectForeground [ttk::style lookup . -selectforeground] \
             activeBackground [ttk::style lookup . -selectbackground] \
@@ -74,6 +75,7 @@ proc set_theme {mode} {
         tk_setPalette background [ttk::style lookup . -background] \
             foreground [ttk::style lookup . -foreground] \
             highlightColor [ttk::style lookup . -focuscolor] \
+            inactiveSelectBackground [ttk::style lookup . -selectbackground] \
             selectBackground [ttk::style lookup . -selectbackground] \
             selectForeground [ttk::style lookup . -selectforeground] \
             activeBackground [ttk::style lookup . -selectbackground] \
