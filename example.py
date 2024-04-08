@@ -1,18 +1,26 @@
+# SPDX-FileCopyrightText: © 2021 rdbende <rdbende@proton.me>
+# SPDX-License-Identifier: MIT
+
 """
-Example script for testing the Azure ttk theme
-Author: rdbende
-License: MIT license
-Source: https://github.com/rdbende/ttk-widget-factory
+Example script for testing the Azure ttk theme.
 """
 
+from __future__ import annotations
 
 import tkinter as tk
 from tkinter import ttk
 
+# These lint errors don't make sense for GUI widgets, so are disabled here.
+# pragma pylint: disable=too-many-instance-attributes, too-many-ancestors
+
 
 class App(ttk.Frame):
-    def __init__(self, parent):
-        ttk.Frame.__init__(self)
+    """
+    The example application window.
+    """
+
+    def __init__(self, parent: tk.Misc | None) -> None:
+        ttk.Frame.__init__(self, parent)
 
         # Make the app responsive
         for index in [0, 1, 2]:
@@ -35,7 +43,10 @@ class App(ttk.Frame):
         # Create widgets :)
         self.setup_widgets()
 
-    def setup_widgets(self):
+    def setup_widgets(self) -> None:  # noqa: PLR0915 # pylint: disable=R0915
+        """
+        Set up the widgets.
+        """
         # Create a Frame for the Checkbuttons
         self.check_frame = ttk.LabelFrame(self, text="Checkbuttons", padding=(20, 10))
         self.check_frame.grid(
@@ -223,7 +234,7 @@ class App(ttk.Frame):
         # Insert treeview data
         for item in treeview_data:
             self.treeview.insert(
-                parent=item[0], index="end", iid=item[1], text=item[2], values=item[3]
+                parent=str(item[0]), index="end", iid=item[1], text=item[2], values=item[3]
             )
             if item[0] == "" or item[1] in {8, 21}:
                 self.treeview.item(item[1], open=True)  # Open parents
@@ -253,7 +264,7 @@ class App(ttk.Frame):
             from_=100,
             to=0,
             variable=self.var_5,
-            command=lambda event: self.var_5.set(self.scale.get()),
+            command=lambda _event: self.var_5.set(self.scale.get()),
         )
         self.scale.grid(row=0, column=0, padx=(20, 10), pady=(20, 0), sticky="ew")
 
@@ -268,7 +279,7 @@ class App(ttk.Frame):
             self.tab_1,
             text="Azure theme for ttk",
             justify="center",
-            font=("-size", 15, "-weight", "bold"),
+            font=["-size", 15, "-weight", "bold"],
         )
         self.label.grid(row=1, column=0, pady=10, columnspan=2)
 
@@ -301,6 +312,6 @@ if __name__ == "__main__":
     root.minsize(root.winfo_width(), root.winfo_height())
     x_cordinate = int((root.winfo_screenwidth() / 2) - (root.winfo_width() / 2))
     y_cordinate = int((root.winfo_screenheight() / 2) - (root.winfo_height() / 2))
-    root.geometry("+{}+{}".format(x_cordinate, y_cordinate-20))
+    root.geometry(f"+{x_cordinate}+{y_cordinate-20}")
 
     root.mainloop()
